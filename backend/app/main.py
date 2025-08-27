@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic_settings import BaseSettings
 from typing import Optional
 import logging
 import asyncio
@@ -10,16 +9,7 @@ from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
 
 
-class Settings(BaseSettings):
-    mongodb_uri: str = "mongodb://localhost:27017/sales_analyzer"
-    app_name: str = "Sales Analyzer Backend"
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-
-
-settings = Settings()
+from .core.config import settings
 
 
 def create_app() -> FastAPI:

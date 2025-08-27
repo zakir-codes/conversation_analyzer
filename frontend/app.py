@@ -1,12 +1,13 @@
 import streamlit as st
 import httpx
+from core.config import settings
 
 st.set_page_config(page_title="Sales Analyzer", layout="wide")
 
 st.title("Sales Analyzer")
 st.caption("POC Frontend - Streamlit")
 
-backend_base_url = "http://localhost:8000"
+backend_base_url = settings.backend_base_url
 
 
 @st.cache_data(ttl=10)
@@ -28,6 +29,6 @@ with col1:
 
 with col2:
     st.subheader("Links")
-    st.markdown("- Backend docs: http://localhost:8000/docs")
+    st.markdown(f"- Backend docs: {backend_base_url}/docs")
 
 
